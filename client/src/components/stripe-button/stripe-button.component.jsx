@@ -12,7 +12,7 @@ const onToken = token => {
       method: 'post',
       data: {
         amount: priceForStripe,
-        token
+        token: token
       }
     })
     .then(response => {
