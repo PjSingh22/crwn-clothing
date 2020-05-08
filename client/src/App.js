@@ -19,7 +19,7 @@ const CheckoutPage = lazy(() => import('./pages/checkout/checkout.component'));
 
 
 
-const App = ({ checkUserSession, currentUser }) => {
+export const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
     checkUserSession()
   }, [checkUserSession]);
