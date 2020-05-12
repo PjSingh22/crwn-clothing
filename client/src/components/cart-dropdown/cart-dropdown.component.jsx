@@ -15,17 +15,17 @@ import {
 } from './cart-dropdown.styles';
 
 
-const CartDropdown = ({ cartItems, history, dispatch }) => (
+export const CartDropdown = ({ cartItems, history, dispatch }) => (
   <CartDropDown>
     <CartItems>
       {
         cartItems.length ? 
         (cartItems.map(cartItem => <CartItem key={cartItem.id} item={cartItem} />))
         :
-        <EmptyMessage>Your cart is empty</EmptyMessage>
+        <EmptyMessage id='emptymessage'>Your cart is empty</EmptyMessage>
       }
     </CartItems>
-    <CheckoutButton onClick={() => {
+    <CheckoutButton id='counterbutton' onClick={() => {
       history.push('/checkout'); 
       dispatch(toggleCartHidden());
       }}>
