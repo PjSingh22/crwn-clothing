@@ -11,17 +11,17 @@ import {
   PriceContainer
 } from './collection-item.styles';
 
-const CollectionItem = ({item, addItem }) => {
+export const CollectionItem = ({item, addItem }) => {
   const { name, price, imageUrl } = item;
 
   return (
     <CollectionItemContainer>
-      <BackgroundImage  imageUrl={imageUrl} />
+      <BackgroundImage id='bgimage' imageUrl={imageUrl} />
       <CollectionFooterContainer>
-        <NameContainer>{name}</NameContainer>
-        <PriceContainer>${price}</PriceContainer>
+        <NameContainer id='name'>{name}</NameContainer>
+        <span>$<PriceContainer id='price'>{price}</PriceContainer></span>
       </CollectionFooterContainer>
-      <AddButton onClick={() => addItem(item)} inverted>
+      <AddButton id='additem' onClick={() => addItem(item)} inverted>
         Add to cart
       </AddButton>
     </CollectionItemContainer>
