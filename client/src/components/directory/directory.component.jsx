@@ -6,7 +6,7 @@ import './directory.styles.scss';
 
 import { selectDirectorySection } from '../../redux/directory/directory.selectors'
 
-const Directory = ({ sections }) => (
+export const Directory = ({ sections }) => (
   <div className='directory-menu'>
   {sections.map(({ id, ...otherSectionProps }) => (
       <MenuItem key={id} {...otherSectionProps} />
