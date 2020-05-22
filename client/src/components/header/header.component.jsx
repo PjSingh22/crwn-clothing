@@ -11,7 +11,7 @@ import { signOutStart } from '../../redux/user/user.actions';
 import {ReactComponent as Logo } from '../../assets/crown.svg';
 import './header.styles.scss';
 
-const Header = ({ currentUser, hidden, signOutStart }) => (
+export const Header = ({ currentUser, hidden, signOutStart }) => (
   <div className='header'>
     <Link className='logo-container' to='/'>
       <Logo className='logo' />
@@ -24,11 +24,11 @@ const Header = ({ currentUser, hidden, signOutStart }) => (
         CONTACT
       </Link>
       {currentUser ? (
-        <div className='option' onClick={signOutStart}>
+        <div id='sign-out' className='option' onClick={signOutStart}>
           SIGN OUT
         </div>
       ) : (
-        <Link className='option' to='/signin'>
+        <Link id='sign-in' className='option' to='/signin'>
           SIGN IN
         </Link>
       )}
