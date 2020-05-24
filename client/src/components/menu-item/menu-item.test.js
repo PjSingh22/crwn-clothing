@@ -29,7 +29,7 @@ describe('MenuItem Component', () => {
       linkUrl
     };
 
-    wrapper = shallow(<MenuItem {...mockProps}/>);
+    wrapper = shallow(<MenuItem {...mockProps} />)
   });
 
   it('should render MenuItem component', () => {
@@ -37,7 +37,16 @@ describe('MenuItem Component', () => {
   });
 
   it('should call history.push when menu-item is clicked', () => {
-    wrapper.find("[id='menuitem']").simulate('click');
+    wrapper.find("MenuItemContainer").simulate('click');
     expect(mockHistory.push).toHaveBeenCalledWith(`${mockMatch.url}${linkUrl}`);
   });
+
+  it('should pass size to menu-item as the prop size', () => {
+    expect(wrapper.find('MenuItemContainer').prop('size')).toBe(size);
+  }); 
+
+  it('should pass imageUrl to BackgroundImageContainer as a prop', () => {
+    expect(wrapper.find('BackgroundImageContainer').prop('imageUrl')).toBe(imageUrl);
+  });
+
 });
