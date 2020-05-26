@@ -1,5 +1,5 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
-import { fetchCollectionsSuccess, fetchCollectionsFailure, fetchCollectionsStartAsync } from './shop.actions';
+import { fetchCollectionsSuccess, fetchCollectionsFailure } from './shop.actions';
 import{ firestore, convertCollectionsSnapshotToMap } from '../../fire-base/firebase.utils';
 import { fetchCollectionsStart, fetchCollectionsAsynch } from './shop.sagas';
 import ShopActionTypes from './shop.types';
