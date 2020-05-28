@@ -113,3 +113,49 @@ describe('sign up saga', () => {
   });
 });
 
+describe('on sign out saga', () => {
+  const generator = signOut();
+
+  it('should call auth.signOut', () => {
+    const expectSignOut = jest.spyOn(auth, 'signOut');
+    generator.next();
+    expect(expectSignOut).toHaveBeenCalled();
+  });
+
+  it('should call signOutSuccess', () => {
+    expect(generator.next().value).toEqual(put(signOutSuccess()));
+  });
+
+  it('should call signOutFailure', () => {
+    const newGenerator = signOut();
+    newGenerator.next();
+    expect(newGenerator.throw('error').value).toEqual(put(signOutFailure('error')));
+  });
+});
+
+describe('is user authenticated saga', () => {
+  const generator = isUserAuthenticated();
+
+  it('should call getCurrentUser', () => {
+    expect(generator.next().value).toEqual(getCurrentUser());
+  });
+
+  it('should call getSnapshotFromUserAuth if userAuth exists', () => {
+    const mockUserAuth = { uid: '123da'};
+    expect(generator.next(mockUserAuth).value).toEqual(getSnapshotFromUserAuth(mockUserAuth));
+  });
+
+  it('should call signInFailure on error', () => {
+    const newGenerator = isUserAuthenticated();
+    newGenerator.next();
+    expect(newGenerator.throw('error').value).toEqual(put(signInFailure('error')));
+  });
+});
+
+describe('get snapshot from userAuth', () => {
+  const mockUserAuth = {};
+  const mockAdditionalData = {};
+  const generator = getSnapshotFromUserAuth(mockUserAuth, mockAdditionalData);
+
+  expect(generator.next().value).toEqual(call(createUserProfileDocument, mockUserAuth, mockAdditionalData));
+});
